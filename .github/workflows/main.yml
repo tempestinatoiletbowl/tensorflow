@@ -1,0 +1,18 @@
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 libmicrohttpd12 unrar
+      - name: Run unit tests
+        run: ./test/test
+
+name: CI
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
